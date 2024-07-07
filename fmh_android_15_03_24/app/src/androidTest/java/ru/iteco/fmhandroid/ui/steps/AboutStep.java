@@ -15,7 +15,7 @@ import static ru.iteco.fmhandroid.ui.screenElement.AboutElement.*;
 public class AboutStep {
 
     public void checkScreenElementsAbout() {
-        Allure.step("Проверка элементов экрана About us");
+        Allure.step("Проверка элементов экрана About");
         elementWaiting(withId(R.id.about_company_info_label_text_view), 5000);
         trademark.check(matches(isDisplayed()));
         versionTitle.check(matches(isDisplayed()));

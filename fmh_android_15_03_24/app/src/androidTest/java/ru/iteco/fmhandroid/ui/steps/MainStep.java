@@ -74,7 +74,7 @@ public class MainStep {
     }
 
     public void clickMissionButton() {
-        Allure.step("Нажать - Our Mission");
+        Allure.step("Нажать - значок бабочка");
         missionButton.check(matches(isDisplayed()));
         missionButton.perform(click());
     }

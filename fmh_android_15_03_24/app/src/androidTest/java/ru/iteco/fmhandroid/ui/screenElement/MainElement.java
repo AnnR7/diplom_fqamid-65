@@ -15,7 +15,6 @@ import ru.iteco.fmhandroid.R;
 public class MainElement {
     public static ViewInteraction logoutText = onView(withText("Log out"));
     public static ViewInteraction mainText= onView(withText("Main"));
-    public static ViewInteraction claimsText = onView(withText("Claims"));
     public static ViewInteraction newsText = onView(withText("News"));
     public static ViewInteraction aboutText = onView(withText("About"));
     public static ViewInteraction trademark = onView(withId(R.id.trademark_image_view));
@@ -25,7 +24,6 @@ public class MainElement {
 
     public ViewInteraction news = onView(withText("News"));
 
-//    public ViewInteraction claim = onView(withText("Claims"));
     public static ViewInteraction newsList = onView(withId(R.id.news_list_recycler_view));
     public static ViewInteraction allNewsButton = onView(withId(R.id.all_news_text_view));
     public static ViewInteraction childNews = onView(allOf(withId(R.id.news_list_recycler_view),

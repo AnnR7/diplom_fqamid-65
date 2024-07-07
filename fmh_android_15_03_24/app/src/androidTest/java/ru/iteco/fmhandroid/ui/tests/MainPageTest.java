@@ -50,28 +50,34 @@ public class MainPageTest {
         }
     }
 
-    @Test
-    @DisplayName("Отображение разделов меню")
-    @Description("В списке есть разделы Main, News, About")
-    public void testCheckMenuScreenList() {
-        mainStep.clickMenuButton();
-        mainStep.checkMenuList();
-    }
+//    @Test
+//    @DisplayName("Отображение разделов меню")
+//    @Description("В списке есть разделы Main, News, About")
+//    public void testCheckMenuScreenList() {
+//        mainStep.clickMenuButton();
+//        mainStep.checkMenuList();
+//    }
 
     @Test
-    @DisplayName("Переход из бокового меню в разделы \"News\", \"Main\"" )
+    @DisplayName("Переход из бокового меню в разделы \"News\", \"Main\", \"About" )
     @Description("Переход на соответствующую вкладку из меню приложения")
     public void testCheckTransitionFromMenu() {
         mainStep.goToNews();
         newsStep.checkNewsElements();
         mainStep.goToMain();
         mainStep.checkMainElements();
+        mainStep.goToAbout();
+        aboutStep.checkScreenElementsAbout();
     }
 
     @Test
     @DisplayName("Переход на вкладку с цитатами Love is all")
-    @Description("Переход на вкладку Love is all из главного экрана приложения")
+    @Description("Переход на вкладку Love is all из главного экрана приложения, с экрана News")
     public void testCheckTransitionToMissionScreen() {
+        mainStep.clickMissionButton();
+        loveStep.checkMissionElements();
+        mainStep.goToNews();
+        newsStep.checkNewsElements();
         mainStep.clickMissionButton();
         loveStep.checkMissionElements();
     }

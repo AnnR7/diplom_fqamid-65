@@ -102,8 +102,8 @@ public class AuthTest {
 //        authStep.clickSignInButton();
 //        generalStep.checkInvalidAuthDataToast();
 //    }
-
-  
+//
+//
 //    @Test
 //    @DisplayName("Авторизация, когда поле \"Логин\" пустое")
 //    @Description("При авторизации с пустым логином пользователь не авторизуется. " +
@@ -113,22 +113,23 @@ public class AuthTest {
 //        authStep.clickSignInButton();
 //        generalStep.checkEmptyAuthDataToast();
 //    }
-//
-//    @Test
-//    @DisplayName("Авторизация, когда поле \"Пароль\" пустое")
-//    @Description("При авторизации с пустым паролем пользователь не авторизуется. " +
-//            "Login and password cannot be empty")
-//    public void testLoginWithEmptyPassword() {
-//        authStep.authWithEmptyPass(authInfo());
-//        authStep.clickSignInButton();
-//        generalStep.checkEmptyAuthDataToast();
-//    }
+
+    @Test
+    @DisplayName("Авторизация, когда поле \"Пароль\" пустое")
+    @Description("При авторизации с пустым паролем пользователь не авторизуется. " +
+            "Login and password cannot be empty")
+    public void testLoginWithEmptyPassword() {
+        authStep.authWithEmptyPass(authInfo());
+        authStep.clickSignInButton();
+        generalStep.checkEmptyAuthDataToast();
+    }
 
     @Test
     @DisplayName("Авторизация, когда поле \"Логин\" и \"Пароль\" пустое")
     @Description("При авторизации с пустым логином и паролем пользователь не авторизуется. " +
             "Login and password cannot be empty")
     public void testLoginWithEmptyLoginAndPass() {
+        authStep.authWithEmptyLoginAndPass(authInfo());
         authStep.clickSignInButton();
         generalStep.checkEmptyAuthDataToast();
     }

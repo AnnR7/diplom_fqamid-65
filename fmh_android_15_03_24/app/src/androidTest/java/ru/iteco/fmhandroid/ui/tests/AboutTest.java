@@ -45,7 +45,7 @@ public class AboutTest {
     }
 
     @Test
-    @DisplayName("Проверка элементов экрана About")
+    @DisplayName("Переход с главного экрана в раздел About")
     @Description("Корректность отображения всех элементов экрана About")
     public void testCheckScreenElementsAbout() {
         aboutStep.checkScreenElementsAbout();

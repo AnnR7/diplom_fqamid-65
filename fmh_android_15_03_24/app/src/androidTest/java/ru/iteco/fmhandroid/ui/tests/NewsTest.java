@@ -81,29 +81,29 @@ public class NewsTest {
         assertEquals(firstNewsTitle, firstNewsTitleAfterSecondSorting);
     }
 
-//    @Test
-//    @DisplayName("Фильтр по дате - нет новостей")
-//    @Description("Если нет новостей для этой даты - надпись There is nothing here yet")
-//    public void testNothingToShowScreen() {
-//        newsStep.openFilter();
-//        filterScreen.checkFilterElements();
-//        filterScreen.fillInStartDateField(data.dateNonNews);
-//        filterScreen.fillInEndDateField(data.dateNonNews);
-//        filterScreen.clickFilter();
-//        generalStep.checkNewsButterfly();
-//        generalStep.checkNothingToShow();
-//    }
+    @Test
+    @DisplayName("Фильтр по дате - нет новостей")
+    @Description("Если нет новостей для этой даты - надпись There is nothing here yet")
+    public void testNothingToShowScreen() {
+        newsStep.openFilter();
+        filterScreen.checkFilterElements();
+        filterScreen.fillInStartDateField(data.dateNonNews);
+        filterScreen.fillInEndDateField(data.dateNonNews);
+        filterScreen.clickFilter();
+        generalStep.checkNewsButterfly();
+        generalStep.checkNothingToShow();
+    }
 
-//    @Test
-//    @DisplayName("Отмена фильтрации")
-//    @Description("Выход из фильтра без фильтрации новостей")
-//    public void testCancelingFiltering() {
-//        newsStep.openFilter();
-//        filterScreen.checkFilterElements();
-//        filterScreen.fillInStartDateField(data.dateOfPublic);
-//        generalStep.clickCancelButton();
-//        newsStep.checkNewsElements();
-//    }
+    @Test
+    @DisplayName("Отмена фильтрации")
+    @Description("Выход из фильтра без фильтрации новостей")
+    public void testCancelingFiltering() {
+        newsStep.openFilter();
+        filterScreen.checkFilterElements();
+        filterScreen.fillInStartDateField(data.dateOfPublic);
+        generalStep.clickCancelButton();
+        newsStep.checkNewsElements();
+    }
 
     @Test
     @DisplayName("Перейти в Control panel")
@@ -173,8 +173,8 @@ public class NewsTest {
     }
 
     @Test
-    @DisplayName("Создать новость со спец символами, негативный")
-    @Description("При заполнении полей спец символами- новость должна не создаваться, поэтому тест падает")
+    @DisplayName("Создать новость со спец символами")
+    @Description("При заполнении полей спец символами- новость не должна создаваться")
     public void testCreateNewsWithSymbols() {
         newsStep.clickEditButton();
         panelSteps.clickCreateNewsButton();
@@ -244,8 +244,8 @@ public class NewsTest {
     }
 
     @Test
-    @DisplayName("Отмена редактирование новости")
-    @Description("Нажать кнопку отмены и подтвердить, тогда новость не изменятеся")
+    @DisplayName("Отмена редактирования новости")
+    @Description("Нажать кнопку отмены и подтвердить, новость не изменится")
     public void testCancelEditNews() {
         newsStep.clickEditButton();
         panelSteps.clickCreateNewsButton();
