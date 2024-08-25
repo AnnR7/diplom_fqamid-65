@@ -15,6 +15,8 @@ import ru.iteco.fmhandroid.R;
 import static ru.iteco.fmhandroid.ui.screenElement.GeneralElements.*;
 import static ru.iteco.fmhandroid.ui.screenElement.TimeElement.*;
 
+import java.security.cert.CertPathChecker;
+
 public class GeneralStep {
 
     public void clickSaveButton() {
@@ -65,7 +67,7 @@ public class GeneralStep {
 
     public void checkInvalidAuthDataToast() {
         Allure.step("Проверка предупреждения");
-        checkErrorToast(R.string.wrong_login_or_password, true);
+        checkEmptyToast(R.string.wrong_login_or_password, true);
     }
 
     public void checkEmptyAuthDataToast() {

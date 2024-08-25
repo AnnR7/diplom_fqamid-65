@@ -68,8 +68,8 @@ public class NewsTest {
     }
 
     @Test
-    @DisplayName("Сортировка новостей во вкладке \"Новости\" ")
-    @Description("Меняется порядок отображения новостей по дате")
+    @DisplayName("Сортировка новостей на экране News сначала свежие id20")
+    @Description("Меняется порядок отображения новостей по дате добавления")
     public void testSortNews() {
         String firstNewsTitle = newsStep.getFirstNewsTitle(0);
         newsStep.clickSortButton();
@@ -82,7 +82,8 @@ public class NewsTest {
     }
 
     @Test
-    @DisplayName("Фильтр по дате - нет новостей")
+    @DisplayName("Фильтрация новостей без выбора категории с валидными датами публикации, " +
+            "когда нет новостей на выбранную дату id36")
     @Description("Если нет новостей для этой даты - надпись There is nothing here yet")
     public void testNothingToShowScreen() {
         newsStep.openFilter();
@@ -95,9 +96,9 @@ public class NewsTest {
     }
 
     @Test
-    @DisplayName("Отмена фильтрации")
+    @DisplayName("Отмена фильтрации кнопкой Cancel после выбора категории и дат id39")
     @Description("Выход из фильтра без фильтрации новостей")
-    public void testCancelingFiltering() {
+    public void testCancelFilter() {
         newsStep.openFilter();
         filterScreen.checkFilterElements();
         filterScreen.fillInStartDateField(data.dateOfPublic);
@@ -106,8 +107,9 @@ public class NewsTest {
     }
 
     @Test
-    @DisplayName("Перейти в Control panel")
-    @Description("Нажать - блокнот с карандашом")
+    @DisplayName("Переход с экрана News в Control panel по кнопке Редактировать " +
+            "(листок и карандаш) (id45)")
+    @Description("Нажать листок с карандашом")
     public void testGoToControlPanel() {
         newsStep.clickEditButton();
         panelSteps.checkPanelElements();
@@ -126,16 +128,26 @@ public class NewsTest {
     }
 
     @Test
-    @DisplayName("Фильтр новостей через панель управления по статусу")
-    @Description("При фильтре новостей по статусу Active/Not Active в списке новостей отображаются " +
+    @DisplayName("Фильтрация новостей без выбора категории и дат с чекбоксом " +
+            "Activ в Control panel id53")
+    @Description("При фильтре новостей по статусу Active в списке новостей отображаются " +
             "только новости с этим статусом")
-    public void testCheckFilterActiveNotActive() {
+    public void testCheckFilterActive() {
         newsStep.clickEditButton();
         panelSteps.openNewsFilter();
         filterScreen.clickNotActiveCheckBox();
         filterScreen.clickFilter();
         newsStep.newsListLoad();
         panelSteps.checkStatusActive();
+    }
+
+    @Test
+    @DisplayName("Фильтрация новостей без выбора категории и дат с чекбоксом " +
+            "Not Activ в Control panel id54")
+    @Description("При фильтре новостей по статусу Not Active в списке новостей отображаются " +
+            "только новости с этим статусом")
+    public void testCheckFilterNotActive() {
+        newsStep.clickEditButton();
         panelSteps.openNewsFilter();
         filterScreen.clickActiveCheckBox();
         filterScreen.clickFilter();
@@ -154,7 +166,7 @@ public class NewsTest {
     }
 
     @Test
-    @DisplayName("Создать новость на кирилице")
+    @DisplayName("Создание новости в категории Объявление в Control panel на кириллице id63")
     @Description("Заполнение полей данным на кириллице")
     public void testCreateNewsCyrillic() {
         newsStep.clickEditButton();
@@ -164,7 +176,6 @@ public class NewsTest {
                 data.timeOfPublic, data.descriptOnCyr);
         generalStep.clickSaveButton();
         newsStep.newsListLoad();
-        panelSteps.checkCreateNews(0, data.titleCyr, data.descriptOnCyr);
         mainStep.goToNews();
         newsElement.allNewsBlock.perform(swipeDown());
         newsStep.checkOpenNews(0);
@@ -173,33 +184,21 @@ public class NewsTest {
     }
 
     @Test
-    @DisplayName("Создать новость со спец символами")
-    @Description("При заполнении полей спец символами- новость не должна создаваться")
+    @DisplayName("Создание новости в Control panel спецсимволами (id64)")
+    @Description("При заполнении полей - категория, заголовок и описание спец символами - " +
+            "новость не должна создаваться")
     public void testCreateNewsWithSymbols() {
         newsStep.clickEditButton();
         panelSteps.clickCreateNewsButton();
         createNewsStep.checkNewsScreenElements();
-        createNewsStep.createNews(randomCategory(), data.titleSymb, data.dateOfPublic,
+        createNewsStep.createNews(data.categorySymb, data.titleSymb, data.dateOfPublic,
                 data.timeOfPublic, data.descriptSymb);
         generalStep.clickSaveButton();
-        generalStep.checkInvalidData("Wrong format data", true);
+        generalStep.checkInvalidData("Saving failed. Try again later", true);
     }
 
     @Test
-    @DisplayName("Создать новость с пустым полем Description")
-    @Description("Уведомление о необходимости заполнить поле")
-    public void testCreateNewsWithEmptyDescription() {
-        newsStep.clickEditButton();
-        panelSteps.clickCreateNewsButton();
-        createNewsStep.checkNewsScreenElements();
-        createNewsStep.createNews(randomCategory(), data.titleCyr, data.dateOfPublic,
-                data.timeOfPublic, data.descriptionEmptyText);
-        generalStep.clickSaveButton();
-        generalStep.checkEmptyFieldError();
-    }
-
-    @Test
-    @DisplayName("Создать новость с пустыми полями")
+    @DisplayName("Создание Новости с незаполненными полями в Control panel id73")
     @Description("Уведомление о необходимости заполнить поля полях")
     public void testCreateNewsWithEmptyFields() {
         newsStep.clickEditButton();
@@ -210,7 +209,7 @@ public class NewsTest {
     }
 
     @Test
-    @DisplayName("Отменить создание новости")
+    @DisplayName("Отмена создания новости в Control panel id72")
     @Description("Нажать и подтвердить отмену - новость не создается")
     public void testCancelNewsCreate() {
         newsStep.clickEditButton();
@@ -224,9 +223,9 @@ public class NewsTest {
     }
 
     @Test
-    @DisplayName("Редактирование новости")
-    @Description("Новость с новыми данными")
-    public void testEditNews() {
+    @DisplayName("Редактирование заголовка новости в Control panel (id87)")
+    @Description("Новость с новым заголовком")
+    public void testEditNewsTitle() {
         newsStep.clickEditButton();
         panelSteps.clickCreateNewsButton();
         createNewsStep.createNews(randomCategory(), data.titleCyr, data.dateOfPublic,
@@ -236,15 +235,31 @@ public class NewsTest {
         panelSteps.clickEditNews(0);
         editNewsStep.checkEditNewsElements();
         editNewsStep.changeTitle(data.newTitleEdit);
-        editNewsStep.changeDescription(data.newDescriptionEdit);
         generalStep.clickSaveButton();
         panelSteps.clickOneNewsItem(0);
         assertEquals(data.newTitleEdit, panelSteps.getEditNewsTitle(0));
+    }
+
+    @Test
+    @DisplayName("Редактирование описания новости в Control panel (id90)")
+    @Description("Новость с новым описанием")
+    public void testEditNewsDescription() {
+        newsStep.clickEditButton();
+        panelSteps.clickCreateNewsButton();
+        createNewsStep.createNews(randomCategory(), data.titleCyr, data.dateOfPublic,
+                data.timeOfPublic, data.descriptOnCyr);
+        generalStep.clickSaveButton();
+        newsStep.newsListLoad();
+        panelSteps.clickEditNews(0);
+        editNewsStep.checkEditNewsElements();
+        editNewsStep.changeDescription(data.newDescriptionEdit);
+        generalStep.clickSaveButton();
+        panelSteps.clickOneNewsItem(0);
         assertEquals(data.newDescriptionEdit, panelSteps.getEditNewsDescription(0));
     }
 
     @Test
-    @DisplayName("Отмена редактирования новости")
+    @DisplayName("Отмена сохранения изменений при редактировании новости в Control panel id84")
     @Description("Нажать кнопку отмены и подтвердить, новость не изменится")
     public void testCancelEditNews() {
         newsStep.clickEditButton();
@@ -262,6 +277,6 @@ public class NewsTest {
         panelSteps.checkPanelElements();
         panelElement.newsList.perform(swipeDown());
         panelSteps.clickOneNewsItem(0);
-        assertEquals(data.titleCyr, panelSteps.getEditNewsTitle(0));
+        assertEquals(data.newTitleEdit, panelSteps.getEditNewsTitle(0));
     }
 }

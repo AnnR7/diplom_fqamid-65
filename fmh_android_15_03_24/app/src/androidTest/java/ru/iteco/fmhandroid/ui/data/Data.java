@@ -25,6 +25,8 @@ public class Data {
     public String descriptSymb = "='+*&^%$#@~";
     public String titleCyr = "Заголовок новости";
     public String titleSymb = "'+*&^%$#@~";
+
+    public String categorySymb = "!@#$%^&**";
     public String descriptionEmptyText = "";
     public String newTitleEdit = "Отредактированный заголовок";
     public String newDescriptionEdit = "Отредактированное описание";

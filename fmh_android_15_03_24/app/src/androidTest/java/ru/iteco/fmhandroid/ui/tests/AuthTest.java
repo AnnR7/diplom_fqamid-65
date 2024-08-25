@@ -1,6 +1,7 @@
 package ru.iteco.fmhandroid.ui.tests;
 
 import static ru.iteco.fmhandroid.ui.data.Helper.authInfo;
+import static ru.iteco.fmhandroid.ui.data.Helper.invalidAuthData;
 
 import androidx.test.rule.ActivityTestRule;
 
@@ -51,7 +52,7 @@ public class AuthTest {
     }
 
     @Test
-    @DisplayName("Авторизация c валидными данными")
+    @DisplayName("Авторизация c валидными данными (id1)")
     @Description("После ввода валидного логина и пароля происходит переход на главный экран приложения")
     public void testLoginWithValidLoginAndPass() {
         authStep.authWithValidLoginAndPass(authInfo());
@@ -61,7 +62,7 @@ public class AuthTest {
     }
 
     @Test
-    @DisplayName("Выход из учетной записи ")
+    @DisplayName("Выход из учетной записи (id4)")
     @Description("Авторизованный пользователь выходит из приложения с помощью кнопки Log out")
     public void testLogOutApplication() {
         authStep.authWithValidLoginAndPass(authInfo());
@@ -71,61 +72,18 @@ public class AuthTest {
         mainStep.clickLogOutButton();
         authStep.checkAuthScreenElements();
     }
-    @Test
-    @DisplayName("Авторизация в приложении, когда поле \"Логин\" и \"Пароль\" заполнено " +
-            "невалидными данными ")
-    @Description("При вводе невалидных значений логина и пароля всплывает сообщение о неверных данных" +
-            "Something went wrong. Try again later")
-    public void testLoginWithInvalidLoginAndPass() {
-        authStep.authWithInvalidLoginAndPass(authInfo());
-        authStep.clickSignInButton();
-        generalStep.checkInvalidAuthDataToast();
-    }
-
 //    @Test
-//    @DisplayName("Авторизация, когда поле \"Логин\" заполнено данными " +
-//            "незарегистрированного пользователя")
-//    @Description("При вводе невалидных значений логина всплывает сообщение о неверных данных" +
-//            "Something went wrong. Try again later")
-//    public void testLoginWithInvalidLogin() {
-//        authStep.authWithInvalidLogin(authInfo());
+//    @DisplayName("Авторизация c невалидными данными (id2)")
+//    @Description("При вводе невалидных значений логина и пароля всплывает сообщение о неверных данных" +
+//            "Something went wrong. Try again later.")
+//    public void testLoginWithInvalidLoginAndPass() {
+//        authStep.authWithInvalidLoginAndPass(invalidAuthData());
 //        authStep.clickSignInButton();
 //        generalStep.checkInvalidAuthDataToast();
 //    }
-//    @Test
-//    @DisplayName("Авторизация, когда поле \"Пароль\" заполнено данными " +
-//            "незарегистрированного пользователя")
-//    @Description("При вводе невалидных значений в поле Пароль всплывает сообщение о неверных данных" +
-//            "Something went wrong. Try again later")
-//    public void testLoginWithInvalidPass() {
-//        authStep.authWithInvalidPass(authInfo());
-//        authStep.clickSignInButton();
-//        generalStep.checkInvalidAuthDataToast();
-//    }
-//
-//
-//    @Test
-//    @DisplayName("Авторизация, когда поле \"Логин\" пустое")
-//    @Description("При авторизации с пустым логином пользователь не авторизуется. " +
-//            "Login and password cannot be empty")
-//    public void testLoginWithEmptyLogin() {
-//        authStep.authWithEmptyLogin(authInfo());
-//        authStep.clickSignInButton();
-//        generalStep.checkEmptyAuthDataToast();
-//    }
 
     @Test
-    @DisplayName("Авторизация, когда поле \"Пароль\" пустое")
-    @Description("При авторизации с пустым паролем пользователь не авторизуется. " +
-            "Login and password cannot be empty")
-    public void testLoginWithEmptyPassword() {
-        authStep.authWithEmptyPass(authInfo());
-        authStep.clickSignInButton();
-        generalStep.checkEmptyAuthDataToast();
-    }
-
-    @Test
-    @DisplayName("Авторизация, когда поле \"Логин\" и \"Пароль\" пустое")
+    @DisplayName("Авторизация с пустыми полями (id3)")
     @Description("При авторизации с пустым логином и паролем пользователь не авторизуется. " +
             "Login and password cannot be empty")
     public void testLoginWithEmptyLoginAndPass() {

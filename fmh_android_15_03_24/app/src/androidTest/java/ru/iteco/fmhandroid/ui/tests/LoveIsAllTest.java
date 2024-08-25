@@ -52,8 +52,8 @@ public class LoveIsAllTest {
     }
 
     @Test
-    @DisplayName("Развернуть и свернуть цитату, во вкладке \"Love is all\" приложения")
-    @Description("При нажатии - разворачивается содержимое цитаты")
+    @DisplayName("Разворачивание/ сворачивание цитаты на экране Love is all id97")
+    @Description("При нажатии - разворачивается содержимое цитаты, при повторном нажатии - сворачивается")
     public void testExpandAndCollapseQuote() {
         loveStep.checkQuote(2);
         loveStep.descriptionIsDisplay(data.quoteText);

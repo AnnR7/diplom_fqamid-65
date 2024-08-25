@@ -26,7 +26,8 @@ public class MainElement {
 
     public static ViewInteraction newsList = onView(withId(R.id.news_list_recycler_view));
     public static ViewInteraction allNewsButton = onView(withId(R.id.all_news_text_view));
-    public static ViewInteraction childNews = onView(allOf(withId(R.id.news_list_recycler_view),
+    public static ViewInteraction childNews = onView(
+            allOf(withId(R.id.news_list_recycler_view),
             childAtPosition(withId(R.id.all_news_cards_block_constraint_layout), 0)));
     public static ViewInteraction newsBlockButton = onView(
             allOf(withId(R.id.expand_material_button),

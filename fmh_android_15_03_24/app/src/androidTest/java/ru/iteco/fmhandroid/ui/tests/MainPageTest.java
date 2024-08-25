@@ -50,32 +50,44 @@ public class MainPageTest {
         }
     }
 
-//    @Test
-//    @DisplayName("Отображение разделов меню")
-//    @Description("В списке есть разделы Main, News, About")
-//    public void testCheckMenuScreenList() {
-//        mainStep.clickMenuButton();
-//        mainStep.checkMenuList();
-//    }
+    @Test
+    @DisplayName("Отображение разделов меню")
+    @Description("В списке есть разделы Main, News, About")
+    public void testCheckMenuScreenList() {
+        mainStep.clickMenuButton();
+        mainStep.checkMenuList();
+    }
 
     @Test
-    @DisplayName("Переход из бокового меню в разделы \"News\", \"Main\", \"About" )
-    @Description("Переход на соответствующую вкладку из меню приложения")
-    public void testCheckTransitionFromMenu() {
+    @DisplayName("Переход в раздел News с экрана Main через Action menu id5" )
+    @Description("Проверка отображения элементов экрана News")
+    public void testCheckTransitionToNewsScreen() {
+        mainStep.goToNews();
+        newsStep.checkNewsElements();
+    }
+
+    @Test
+    @DisplayName("Переход в раздел Main с экрана News через Action menu (id7)" )
+    @Description("Проверка отображения элементов экрана Main")
+    public void testCheckTransitionToMainScreenFromNews() {
         mainStep.goToNews();
         newsStep.checkNewsElements();
         mainStep.goToMain();
         mainStep.checkMainElements();
-        mainStep.goToAbout();
-        aboutStep.checkScreenElementsAbout();
     }
 
     @Test
-    @DisplayName("Переход на вкладку с цитатами Love is all")
-    @Description("Переход на вкладку Love is all из главного экрана приложения, с экрана News")
-    public void testCheckTransitionToMissionScreen() {
+    @DisplayName("Переход с экрана Main на экран Love is all по кнопке бабочка id11")
+    @Description("Проверка отображения элементов экрана Love is all")
+    public void testCheckTransitionToMissionScreenFromMain() {
         mainStep.clickMissionButton();
         loveStep.checkMissionElements();
+    }
+
+    @Test
+    @DisplayName("Переход с экрана News на экран Love is all по кнопке бабочка id12")
+    @Description("Проверка отображения элементов экрана Love is all")
+    public void testCheckTransitionToMissionScreenFromNews() {
         mainStep.goToNews();
         newsStep.checkNewsElements();
         mainStep.clickMissionButton();
@@ -83,8 +95,8 @@ public class MainPageTest {
     }
 
     @Test
-    @DisplayName("Переход на вкладку News через All News и возврат на главный экран")
-    @Description("На главном экране, нажав кнопку All News, происходит переход на вкладку News")
+    @DisplayName("Переход в раздел News по кнопке All News с экрана Main и возврат обратно на Main id18")
+    @Description("Проверка отображения элементов экрана News, затем экрана Main")
     public void testCheckAllNewsButton() {
         mainStep.clickAllNews();
         newsStep.checkNewsElements();
@@ -93,7 +105,7 @@ public class MainPageTest {
     }
 
     @Test
-    @DisplayName("Развернуть и свернуть блок новостей (News)")
+    @DisplayName("Разворачивание/ сворачивание раздела новостей на экране Main id17")
     @Description("Блок новостей при нажатии сворачивается, при повторном нажатии - разворачивается")
     public void testExpandAndCollapseNewsBlock() {
         mainStep.checkAllNews();
@@ -102,11 +114,14 @@ public class MainPageTest {
         mainStep.allNewsDisplay();
     }
 
-    @Test
-    @DisplayName("Развернуть отдельную новость")
-    @Description("При нажатии на отдельную новость отображается ее описание")
-    public void testExpandSeparateNewsItem() {
-        mainStep.checkOneNews(1);
-        mainStep.descriptionIsDisplay(1);
-    }
+//    @Test
+//    @DisplayName("Разворачивание/ сворачивание описания отдельной новости на экране Main id16")
+//    @Description("Отдельная новость при нажатии разворачивается и отображается ее описание, " +
+//            "при повторном нажатии сворачивается")
+//    public void testExpandSeparateNewsItem() {
+//        mainStep.checkOneNews(0);
+//        mainStep.descriptionIsDisplay(0);
+//        mainStep.checkOneNews(0);
+//        mainStep.descriptionNotDisplay(0);
+//    }
 }

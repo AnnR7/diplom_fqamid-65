@@ -45,21 +45,26 @@ public class AboutTest {
     }
 
     @Test
-    @DisplayName("Переход с главного экрана в раздел About")
-    @Description("Корректность отображения всех элементов экрана About")
-    public void testCheckScreenElementsAbout() {
+    @DisplayName("Переход в раздел About с экрана Main через Action menu id6")
+    @Description("Проверка отображения всех элементов экрана About")
+    public void testCheckTransitionToAboutScreen() {
         aboutStep.checkScreenElementsAbout();
     }
 
     @Test
-    @DisplayName("Проверка кликабельности ссылок")
-    public void testCheckingClickabilityLinks() {
+    @DisplayName("Переход по ссылке Privacy Policy id95")
+    public void testCheckClickabilityLink1() {
         aboutStep.clickLinkPrivacyPolicy();
+    }
+
+    @Test
+    @DisplayName("Переход по ссылке Terms of Use id96")
+    public void testCheckClickabilityLink2() {
         aboutStep.clickLinkTermsofUse();
     }
 
     @Test
-    @DisplayName("Возврат на главный экран приложения со страницы About")
+    @DisplayName("Выход из раздела About по кнопке Назад на экране id10")
     public void testCheckGoBackMainScreen() {
         aboutStep.checkScreenElementsAbout();
         aboutStep.checkReturnButton();

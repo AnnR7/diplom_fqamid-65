@@ -54,17 +54,26 @@ public class MainStep {
     }
 
     public void checkOneNews(int position) {
-        Allure.step("Раскрыть выбранную новость");
-        childNews.perform(actionOnItemAtPosition(position, click()));
+        Allure.step("Клик на выбранную новость");
+        childNews.perform(actionOnItemAtPosition(0, click()));
     }
 
     public void descriptionIsDisplay(int position) {
-        Allure.step("Отображение описания новостей");
+        Allure.step("Отображение описания новости");
         String descriptionText = Helper.Text.getText(onView(withIndex(withId
                 (R.id.news_item_description_text_view), position)));
         ViewInteraction newsDescription = onView(allOf(withId(R.id.news_item_description_text_view),
                 withText(descriptionText)));
         newsDescription.check(matches(isDisplayed()));
+    }
+
+    public void descriptionNotDisplay(int position) {
+        Allure.step("Новость свернута");
+        String descriptionText = Helper.Text.getText(onView(withIndex(withId
+                (R.id.news_item_description_text_view), position)));
+        ViewInteraction newsDescription = onView(allOf(withId(R.id.news_item_description_text_view),
+                withText(descriptionText)));
+        newsDescription.check(matches(not(isDisplayed())));
     }
 
     public void clickAllNews() {
