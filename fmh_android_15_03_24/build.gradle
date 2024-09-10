@@ -26,8 +26,16 @@ allprojects {
         mavenCentral()
         google()
     }
+    group 'io.qameta.allure'
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+task allureReport(type: Exec) {
+    commandLine "allure", "generate", "--clean", "app/build/allure-results", "-o", "app/build/allure-report"
+}
+
+task allureServe(type: Exec) {
+    commandLine "allure", "serve", "app/build/allure-results"
 }

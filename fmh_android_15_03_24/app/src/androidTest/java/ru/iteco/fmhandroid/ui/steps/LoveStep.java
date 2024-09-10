@@ -29,15 +29,15 @@ public class LoveStep {
         missionConstraintLayout.perform(actionOnItemAtPosition(number, click()));
     }
 
-    public void descriptionNotDisplay(String text) {
+    public void descriptionIsDisplay(String text) {
         Allure.step("Отображение цитаты");
         onView(allOf(withId(R.id.our_mission_item_description_text_view),
-                withText(text))).check(matches(not(isDisplayed())));
+                withText(text))).check(matches(isDisplayed()));
     }
 
-    public void descriptionIsDisplay(String text) {
+    public void descriptionNotDisplay(String text) {
         Allure.step("Cкрытие цитаты");
         onView(allOf(withId(R.id.our_mission_item_description_text_view),
-                withText(text))).check(matches(isDisplayed()));
+                withText(text))).check(matches(not(isDisplayed())));
     }
 }

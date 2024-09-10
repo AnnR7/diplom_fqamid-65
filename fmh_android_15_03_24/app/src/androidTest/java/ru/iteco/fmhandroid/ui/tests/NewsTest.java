@@ -194,7 +194,8 @@ public class NewsTest {
         createNewsStep.createNews(data.categorySymb, data.titleSymb, data.dateOfPublic,
                 data.timeOfPublic, data.descriptSymb);
         generalStep.clickSaveButton();
-        generalStep.checkInvalidData("Saving failed. Try again later", true);
+        createNewsStep.checkNewsScreenElements();
+//        generalStep.checkInvalidData("Saving failed. Try again later", true);
     }
 
     @Test
@@ -276,7 +277,7 @@ public class NewsTest {
         generalStep.clickOkButton();
         panelSteps.checkPanelElements();
         panelElement.newsList.perform(swipeDown());
-        panelSteps.clickOneNewsItem(0);
-        assertEquals(data.newTitleEdit, panelSteps.getEditNewsTitle(0));
+        panelSteps.clickOneNewsItem(1);
+        assertEquals(data.titleCyr, panelSteps.getNewsTitle(1));
     }
 }

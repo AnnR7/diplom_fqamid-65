@@ -1,6 +1,6 @@
 package ru.iteco.fmhandroid.ui.tests;
 
-import androidx.test.rule.ActivityTestRule;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -27,8 +27,8 @@ public class AboutTest {
 
 
     @Rule
-    public androidx.test.rule.ActivityTestRule<AppActivity> ActivityTestRule =
-            new ActivityTestRule<>(AppActivity.class);
+    public ActivityScenarioRule<AppActivity> ActivityTestRule =
+            new ActivityScenarioRule<>(AppActivity.class);
 
     @Before
     public void logoutCheck() {

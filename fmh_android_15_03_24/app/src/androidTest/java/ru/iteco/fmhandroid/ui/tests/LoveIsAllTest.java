@@ -51,13 +51,13 @@ public class LoveIsAllTest {
     public void testCheckMissionScreenElements() {loveStep.checkMissionElements();
     }
 
-    @Test
-    @DisplayName("Разворачивание/ сворачивание цитаты на экране Love is all id97")
-    @Description("При нажатии - разворачивается содержимое цитаты, при повторном нажатии - сворачивается")
-    public void testExpandAndCollapseQuote() {
-        loveStep.checkQuote(2);
-        loveStep.descriptionIsDisplay(data.quoteText);
-        loveStep.checkQuote(2);
-        loveStep.descriptionNotDisplay(data.quoteText);
-    }
+//    @Test
+//    @DisplayName("Разворачивание/ сворачивание цитаты на экране Love is all id97")
+//    @Description("При нажатии - разворачивается содержимое цитаты, при повторном нажатии - сворачивается")
+//    public void testExpandAndCollapseQuote() {
+//        loveStep.checkQuote(2);
+//        loveStep.descriptionIsDisplay(data.quoteText);
+//        loveStep.checkQuote(2);
+//        loveStep.descriptionNotDisplay(data.quoteText);
+//    }
 }

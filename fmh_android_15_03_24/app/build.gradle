@@ -7,10 +7,12 @@ plugins {
     id 'kotlin-parcelize'
     id 'androidx.navigation.safeargs.kotlin'
     id 'com.google.firebase.crashlytics'
+    id 'io.qameta.allure' version '2.8.1' // Убедитесь, что версия актуальная
 }
 
 repositories {
     maven { url 'https://jitpack.io' }
+    mavenCentral()
 }
 
 android {
@@ -35,6 +37,19 @@ android {
         jvmTarget = '1.8'
     }
 
+    packagingOptions {
+        resources {
+            excludes.add("/META-INF/LICENSE-notice.md")
+            excludes.add("/META-INF/LICENSE.md")
+        }
+    }
+
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+        reportDir = file("${project.buildDir}/allure-results")
+//        testInstrumentationRunnerArguments allureResultsDirectory: "/sdcard/allure-results"
+    }
+
     buildFeatures {
         viewBinding true
     }
@@ -52,6 +67,7 @@ android {
 }
 
 dependencies {
+    androidTestImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
     def retrofit_version = "2.9.0"
     def retrofit_gson_version = "2.9.0"
     def okhttp_logging_version = "4.9.2"
@@ -66,7 +82,7 @@ dependencies {
     def hilt_version = '2.41'
     def gson_version = '2.9.0'
     def swipe_refresh_version = '1.1.0'
-    def allure_version = '2.4.0'
+    def allure_kotlin_version = '2.4.0'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -105,11 +121,12 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation 'androidx.test:runner:1.4.0'
     androidTestImplementation 'androidx.test:rules:1.4.0'
-    androidTestImplementation "io.qameta.allure:allure-kotlin-model:$allure_version"
-    androidTestImplementation "io.qameta.allure:allure-kotlin-commons:$allure_version"
-    androidTestImplementation "io.qameta.allure:allure-kotlin-junit4:$allure_version"
-    androidTestImplementation "io.qameta.allure:allure-kotlin-android:$allure_version"
+    androidTestImplementation "io.qameta.allure:allure-kotlin-model:$allure_kotlin_version"
+    androidTestImplementation "io.qameta.allure:allure-kotlin-commons:$allure_kotlin_version"
+    androidTestImplementation "io.qameta.allure:allure-kotlin-junit4:$allure_kotlin_version"
+    androidTestImplementation "io.qameta.allure:allure-kotlin-android:$allure_kotlin_version"
     implementation 'com.github.blocoio:faker:1.2.9'
     testImplementation 'com.github.blocoio:faker:1.2.9'
     androidTestImplementation 'com.github.blocoio:faker:1.2.9'
+    androidTestUtil 'androidx.test:orchestrator:1.5.0'
 }

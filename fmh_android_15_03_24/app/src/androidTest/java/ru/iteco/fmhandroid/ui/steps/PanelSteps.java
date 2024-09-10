@@ -79,6 +79,11 @@ public class PanelSteps {
         return Helper.Text.getText(onView(withIndex(withId(R.id.news_item_title_text_view), index)));
     }
 
+    public String getNewsTitle(int index) {
+        Allure.step("Заголовок новости");
+        return Helper.Text.getText(onView(withIndex(withId(R.id.news_item_title_text_view), index)));
+    }
+
     public String getEditNewsDescription(int index) {
         Allure.step("Редактированное содержание новости");
         return Helper.Text.getText(onView(withIndex(withId(R.id.news_item_description_text_view), index)));
